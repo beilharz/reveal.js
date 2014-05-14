@@ -323,7 +323,8 @@ var Reveal = (function(){
 		configure();
 
 		// Read the initial hash
-		readURL();
+		if( !config.embedded )
+			readURL();
 
 		// Update all backgrounds
 		updateBackground( true );
@@ -628,8 +629,10 @@ var Reveal = (function(){
 
 		eventsAreBound = true;
 
-		window.addEventListener( 'hashchange', onWindowHashChange, false );
-		window.addEventListener( 'resize', onWindowResize, false );
+		if( !config.embedded ){
+			window.addEventListener( 'hashchange', onWindowHashChange, false );
+			window.addEventListener( 'resize', onWindowResize, false );
+		}
 
 		if( config.touch ) {
 			dom.wrapper.addEventListener( 'touchstart', onTouchStart, false );
